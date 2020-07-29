@@ -1,6 +1,7 @@
-# Basic Reason Template
+# Assoc for Arrays
 
-Hello! This project allows you to quickly get started with Reason and BuckleScript. If you wanted a more sophisticated version, try the `react` template (`bsb -theme react -init .`).
+This module emulates the functions for Association Lists from
+OCaml’s `List` module (ref: https://caml.inria.fr/pub/docs/manual-ocaml/libref/List.html)
 
 # Build
 
