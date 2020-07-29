@@ -4,7 +4,7 @@ This module emulates the functions for Association Lists from OCaml’s `List` m
 
 An “association array“ is an array of two-tuples, where the first item is the key and the second item is the corresponding value.
 
-Adds methods that let you specify a predicate function for comparing items for equality, and a method that will find all items with a given key.
+This module has methods that let you specify a predicate function for comparing items for equality. It also includes a method that will find all the values for a given key.
 
 # Build
 
