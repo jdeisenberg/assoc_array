@@ -120,6 +120,31 @@ function removeAssocQ(key, arr) {
               }), arr);
 }
 
+function removeAssocAllBy(key, f, arr) {
+  var len = arr.length;
+  var _acc = [];
+  var _index = 0;
+  while(true) {
+    var index = _index;
+    var acc = _acc;
+    if (index === len) {
+      return acc;
+    }
+    var match = Caml_array.caml_array_get(arr, index);
+    var k = match[0];
+    if (Curry._2(f, k, key)) {
+      _index = index + 1 | 0;
+      continue ;
+    }
+    _index = index + 1 | 0;
+    _acc = $$Array.append(acc, [[
+            k,
+            match[1]
+          ]]);
+    continue ;
+  };
+}
+
 exports.assocBy = assocBy;
 exports.assocByOpt = assocByOpt;
 exports.assoc = assoc;
@@ -133,4 +158,5 @@ exports.existsAssocQ = existsAssocQ;
 exports.removeAssocBy = removeAssocBy;
 exports.removeAssoc = removeAssoc;
 exports.removeAssocQ = removeAssocQ;
+exports.removeAssocAllBy = removeAssocAllBy;
 /* No side effect */

@@ -111,7 +111,7 @@ let existsAssoc: ('a, array<('a, 'b)>) => bool =
 
 /**
  * Return `true` if the given key is in the array, `false` otherwise,
- * using === to compare for physical equality.
+ * using `===` to compare for physical equality.
  */
 let existsAssocQ: ('a, array<('a, 'b)>) => bool =
   (key, arr) => existsAssocBy(key, (x, y) => {x === y}, arr)
@@ -146,7 +146,27 @@ let removeAssoc: ('a, array<('a, 'b)>) => array<('a, 'b)> =
   
 /**
  * Returns an array without the first item with the matching key.
- * Uses the `===` function to compare for physical equalilty.
+ * Uses the `===` operator to compare for physical equalilty.
  */
 let removeAssocQ: ('a, array<('a, 'b)>) => array<('a, 'b)> =
   (key, arr) => removeAssocBy(key, (x, y) => {x === y}, arr)
+  
+/**
+ * Returns an array without any of the items with the matching key.
+ * Uses predicate function `f` function to compare for equalilty.
+ */
+let removeAssocAllBy: ('a, ('a, 'a) => bool, array<('a, 'b)>) => array<('a, 'b)> = 
+  (key, f, arr) => {
+    let len = Array.length(arr)
+    
+    let rec helper = (acc: array<('a, 'b)>, index: int): array<('a, 'b)> => {
+      if (index == len) {
+        acc
+      } else {
+        let (k, v) = arr[index]
+        f(k, key) ? helper(acc, index + 1) :
+          helper(Array.append(acc, [(k, v)]), index + 1)
+      }
+    }
+    helper([], 0)
+}

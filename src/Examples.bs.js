@@ -68,9 +68,23 @@ var d5 = AssocArray$Assoc_array.removeAssoc(5, data);
 
 console.log("remove 5", d5);
 
+var d6 = AssocArray$Assoc_array.removeAssocAllBy(2, (function (x, y) {
+        return x === y;
+      }), data);
+
+console.log("remove all 2", d6);
+
+var d7 = AssocArray$Assoc_array.removeAssocAllBy(5, (function (x, y) {
+        return x === y;
+      }), data);
+
+console.log("remove all 5", d7);
+
 exports.data = data;
 exports.d2 = d2;
 exports.d3 = d3;
 exports.d4 = d4;
 exports.d5 = d5;
+exports.d6 = d6;
+exports.d7 = d7;
 /*  Not a pure module */
